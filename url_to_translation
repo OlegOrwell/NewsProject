@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import asyncio
 import time
+from googletrans import Translator
 import async_google_trans_new
 
 
@@ -36,7 +37,6 @@ class Interpreter:
         list_ = []
         for title in self.titles:
             list_.append(g.translate(title, "ru"))
-        print(f"finished at {time.strftime('%X')}")
         self.list_ = await asyncio.gather(*list_)
 
     def translation_to_file(self):
@@ -57,3 +57,4 @@ if __name__ == '__main__':
     loop.run_until_complete(some_interp.async_translate_titles())
     loop.close()
     some_interp.translation_to_file()
+    print(f"finished at {time.strftime('%X')}") 
